@@ -15,6 +15,9 @@ public class MessagesConfig {
         if(!file.exists()) {
             try {
                 file.createNewFile();
+                config = YamlConfiguration.loadConfiguration(file);
+                config.addDefault("vanish-message", "&l&aYou have been vanished!");
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
