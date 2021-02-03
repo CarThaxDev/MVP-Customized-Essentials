@@ -4,7 +4,9 @@ import me.xpyre.mvpcustomessentials.commands.chat.ClearChatCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
+import me.xpyre.mvpcustomessentials.commands.essentials.FlyCommand;
 import me.xpyre.mvpcustomessentials.commands.essentials.VanishCommand;
+import me.xpyre.mvpcustomessentials.commands.inventory.InvseeCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.FreezePlayer;
 import me.xpyre.mvpcustomessentials.commands.moderation.UnfreezePlayer;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
@@ -31,6 +33,8 @@ public final class Main extends JavaPlugin {
         getCommand("freeze").setExecutor(new FreezePlayer());
         getCommand("unfreeze").setExecutor(new UnfreezePlayer());
         getCommand("clearchat").setExecutor(new ClearChatCommand());
+        getCommand("fly").setExecutor(new FlyCommand());
+        getCommand("invsee").setExecutor(new InvseeCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }

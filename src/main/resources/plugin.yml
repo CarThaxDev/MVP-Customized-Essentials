@@ -35,3 +35,9 @@ commands:
   god:
     description: Makes you or another player invincible
     usage: /god <player>
+  fly:
+    description: Make you or another player fly
+    usage: /fly <player>
+  invsee:
+    description: See or edit another player's inventory
+    usage: /invsee <player>
