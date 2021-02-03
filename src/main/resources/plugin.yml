@@ -5,5 +5,11 @@ prefix: [MVPCustomEssnetials]
 authors: [CarThax08, Xpyre]
 commands:
   msg:
-    description: Send a message to another player
+    description: Send a message to another player.
     usage: /msg <player> <message>
+  mutechat:
+    description: Mute the chat for the server you are on.
+    usage: /mutechat
+  unmutechat:
+    description: Unmute the chat for the server that you are on.
+    usage: /unmutechat

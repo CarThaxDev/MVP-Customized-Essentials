@@ -13,17 +13,22 @@ public class MessageCommand implements CommandExecutor {
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
         if(commandSender instanceof Player){
             Player player = (Player)commandSender;
-            if(strings.length <= 1){
-                player.sendMessage(ChatColor.RED + "You did not provide enough information");
-                return false;
-            }else{
-                Player player2 = Bukkit.getPlayer(strings[0]);
-                String message = "";
-                for(String string : strings){
-                    message = message + string + " ";
+            if(player.hasPermission("m.msg")) {
+                if (strings.length <= 1) {
+                    player.sendMessage(ChatColor.RED + "You did not provide enough information");
+                    return false;
+                } else {
+                    Player player2 = Bukkit.getPlayer(strings[0]);
+                    String message = "";
+                    for (String string : strings) {
+                        message = message + string + " ";
 
+                    }
+                    player2.sendMessage(player.getName() + "--->" + message);
+                    return true;
                 }
-                player2.sendMessage(player.getName()+ "--->" + message);
+            }else{
+                player.sendMessage(ChatColor.RED + "You don't have the required permissions to run this command!");
                 return true;
             }
 
