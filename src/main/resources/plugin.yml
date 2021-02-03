@@ -1,0 +1,5 @@
+name: MVP Custom Essentials
+version: ${project.version}
+main: me.xpyre.mvpcustomessentials.Main
+prefix: [MVPCustomEssnetials]
+authors: [CarThax08, Xpyre]
