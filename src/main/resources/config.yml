@@ -1,0 +1,2 @@
+# All messages are configured in messages.yml, this config is used to change basic variables, such as the URL for the MySql Database.
+Database-URL: https://example.com/

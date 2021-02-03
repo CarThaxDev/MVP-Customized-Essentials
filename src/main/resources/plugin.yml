@@ -7,6 +7,7 @@ commands:
   msg:
     description: Send a message to another player.
     usage: /msg <player> <message>
+    aliases: [m, message]
   mutechat:
     description: Mute the chat for the server you are on.
     usage: /mutechat
@@ -25,3 +26,12 @@ commands:
   unfreeze:
     decription: Unfreeze a player on the server.
     usage: /unfreeze <player>
+  clearchat:
+    decription: Clears the chat.
+    usage: /clearchat
+  clearinventory:
+    description: Clears a player's (or your own) inventory
+    usage: /clearinventory <player>
+  god:
+    description: Makes you or another player invincible
+    usage: /god <player>

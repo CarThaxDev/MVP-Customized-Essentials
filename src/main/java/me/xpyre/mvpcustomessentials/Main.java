@@ -1,5 +1,6 @@
 package me.xpyre.mvpcustomessentials;
 
+import me.xpyre.mvpcustomessentials.commands.chat.ClearChatCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
@@ -29,6 +30,7 @@ public final class Main extends JavaPlugin {
         getCommand("vanish").setExecutor(new VanishCommand(this));
         getCommand("freeze").setExecutor(new FreezePlayer());
         getCommand("unfreeze").setExecutor(new UnfreezePlayer());
+        getCommand("clearchat").setExecutor(new ClearChatCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }
@@ -36,6 +38,7 @@ public final class Main extends JavaPlugin {
     @Override
     public void onDisable() {
         // Plugin shutdown logic
+        MessagesConfig.saveConfig();
     }
     public static boolean getChatMutedState(){
         return isChatMuted;

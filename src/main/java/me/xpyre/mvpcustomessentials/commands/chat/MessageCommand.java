@@ -19,9 +19,9 @@ public class MessageCommand implements CommandExecutor {
                     return false;
                 } else {
                     Player player2 = Bukkit.getPlayer(strings[0]);
-                    String message = "";
+                    StringBuilder message = new StringBuilder();
                     for (String string : strings) {
-                        message = message + string + " ";
+                        message.append(string).append(" ");
 
                     }
                     player2.sendMessage(player.getName() + "--->" + message);
