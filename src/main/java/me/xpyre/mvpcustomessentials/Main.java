@@ -1,13 +1,14 @@
 package me.xpyre.mvpcustomessentials;
 
-import me.xpyre.mvpcustomessentials.commands.MessageCommand;
+import me.xpyre.mvpcustomessentials.commands.chat.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
+import me.xpyre.mvpcustomessentials.commands.essentials.VanishCommand;
+import me.xpyre.mvpcustomessentials.commands.moderation.FreezePlayer;
+import me.xpyre.mvpcustomessentials.commands.moderation.UnfreezePlayer;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
 import me.xpyre.mvpcustomessentials.events.PlayerChatEventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
-
-import java.util.Optional;
 
 public final class Main extends JavaPlugin {
 
@@ -25,6 +26,9 @@ public final class Main extends JavaPlugin {
         getCommand("msg").setExecutor(new MessageCommand());
         getCommand("mutechat").setExecutor(new MuteChat());
         getCommand("unmutechat").setExecutor(new UnmuteChat());
+        getCommand("vanish").setExecutor(new VanishCommand(this));
+        getCommand("freeze").setExecutor(new FreezePlayer());
+        getCommand("unfreeze").setExecutor(new UnfreezePlayer());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }

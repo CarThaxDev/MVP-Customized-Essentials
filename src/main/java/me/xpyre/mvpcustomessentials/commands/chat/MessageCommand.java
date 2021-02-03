@@ -1,4 +1,4 @@
-package me.xpyre.mvpcustomessentials.commands;
+package me.xpyre.mvpcustomessentials.commands.chat;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;

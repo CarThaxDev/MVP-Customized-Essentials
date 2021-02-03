@@ -19,20 +19,36 @@ public class VanishCommand implements CommandExecutor {
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(sender instanceof Player){
             Player player = (Player) sender;
-            if(!player.hasPermission("m.vanish.use")){
-                player.sendMessage(ChatColor.RED + "You do not have the required permissions to use this command!");
-            }else{
-                for(Player player1 : Bukkit.getOnlinePlayers()){
-                    if(!player1.hasPermission("m.vanish.see")){
-                        player1.hidePlayer(plugin, player);
+            if(args.length >= 1) {
+                if (args[0].equalsIgnoreCase("on")) {
+                    if (!player.hasPermission("m.vanish.use")) {
+                        player.sendMessage(ChatColor.RED + "You do not have the required permissions to use this command!");
+                    } else {
+                        for (Player player1 : Bukkit.getOnlinePlayers()) {
+                            if (!player1.hasPermission("m.vanish.see")) {
+                                player1.hidePlayer(plugin, player);
+                            }
+                        }
+                        player.setPlayerListName(player.getDisplayName() + "*");
+                        player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("vanish-on-message")));
+                    }
+                }else if(args[0].equalsIgnoreCase("off")){
+                    if (!player.hasPermission("m.vanish.use")) {
+                        player.sendMessage(ChatColor.RED + "You do not have the required permissions to use this command!");
+                    } else {
+                        for (Player player1 : Bukkit.getOnlinePlayers()) {
+                            if (!player1.hasPermission("m.vanish.see")) {
+                                player1.hidePlayer(plugin, player);
+                            }
+                        }
+                        player.setPlayerListName(player.getDisplayName());
+                        player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("vanish-off-message")));
                     }
                 }
-                player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("vanish-message")));
             }
-            return true;
         }else{
             sender.sendMessage(ChatColor.RED + "You MUST be a player to run this command!");
-            return true;
         }
+        return true;
     }
 }

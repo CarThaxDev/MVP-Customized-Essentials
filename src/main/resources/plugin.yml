@@ -10,6 +10,18 @@ commands:
   mutechat:
     description: Mute the chat for the server you are on.
     usage: /mutechat
+    aliases: mc
   unmutechat:
     description: Unmute the chat for the server that you are on.
     usage: /unmutechat
+    aliases: umc
+  vanish:
+    description: Vanish yourself from everyone on the server.
+    usage: /vanish <on/off>
+    aliases: v
+  freeze:
+    description: Freeze a player on the server.
+    usage: /freeze <player>
+  unfreeze:
+    decription: Unfreeze a player on the server.
+    usage: /unfreeze <player>
