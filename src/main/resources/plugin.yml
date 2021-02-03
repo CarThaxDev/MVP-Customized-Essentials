@@ -3,3 +3,7 @@ version: ${project.version}
 main: me.xpyre.mvpcustomessentials.Main
 prefix: [MVPCustomEssnetials]
 authors: [CarThax08, Xpyre]
+commands:
+  msg:
+    description: Send a message to another player
+    usage: /msg <player> <message>

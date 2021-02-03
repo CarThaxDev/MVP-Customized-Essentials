@@ -1,5 +1,6 @@
 package me.xpyre.mvpcustomessentials;
 
+import me.xpyre.mvpcustomessentials.commands.MessageCommand;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
 import org.bukkit.plugin.java.JavaPlugin;
 
