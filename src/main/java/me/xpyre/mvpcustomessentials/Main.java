@@ -4,6 +4,7 @@ import me.xpyre.mvpcustomessentials.commands.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
+import me.xpyre.mvpcustomessentials.events.PlayerChatEventHandler;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.Optional;
@@ -25,6 +26,7 @@ public final class Main extends JavaPlugin {
         getCommand("mutechat").setExecutor(new MuteChat());
         getCommand("unmutechat").setExecutor(new UnmuteChat());
         //Event Registration
+        getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }
 
     @Override
