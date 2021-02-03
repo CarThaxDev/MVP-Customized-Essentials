@@ -24,9 +24,13 @@ public class GodCommand implements CommandExecutor {
                     player.sendMessage(MessagesConfig.getConfig().getString("god-message-sender-all").replace("[SENDER]", player.getName()).replace("[RECEIVER]", "Everyone"));
                 }else{
                     Player player1 = Bukkit.getPlayer(args[0]);
-                    player1.setInvulnerable(!player1.isInvulnerable());
-                    player1.sendMessage(MessagesConfig.getConfig().getString("god-message-receiver").replace("[SENDER]", player.getName()).replace("[RECEIVER]", player1.getName()));
-                    player.sendMessage(MessagesConfig.getConfig().getString("god-message-sender").replace("[SENDER]", player.getName()).replace("[RECEIVER]", player1.getName()));
+                    if(player1 != null) {
+                        player1.setInvulnerable(!player1.isInvulnerable());
+                        player1.sendMessage(MessagesConfig.getConfig().getString("god-message-receiver").replace("[SENDER]", player.getName()).replace("[RECEIVER]", player1.getName()));
+                        player.sendMessage(MessagesConfig.getConfig().getString("god-message-sender").replace("[SENDER]", player.getName()).replace("[RECEIVER]", player1.getName()));
+                    }else{
+                        player.sendMessage(ChatColor.RED + "That player does not exist!");
+                    }
                 }
             }else{
                 player.sendMessage(ChatColor.RED + "You do not have the required permission to run this command!");
@@ -40,9 +44,13 @@ public class GodCommand implements CommandExecutor {
                 }
             }else{
                 Player player1 = Bukkit.getPlayer(args[0]);
-                player1.setInvulnerable(!player1.isInvulnerable());
-                player1.sendMessage(MessagesConfig.getConfig().getString("god-message-receiver").replace("[SENDER]", "Console").replace("[RECEIVER]", player1.getName()));
-                sender.sendMessage(MessagesConfig.getConfig().getString("god-message-sender").replace("[SENDER]", "Console").replace("[RECEIVER]", player1.getName()));
+                if(player1 != null) {
+                    player1.setInvulnerable(!player1.isInvulnerable());
+                    player1.sendMessage(MessagesConfig.getConfig().getString("god-message-receiver").replace("[SENDER]", "Console").replace("[RECEIVER]", player1.getName()));
+                    sender.sendMessage(MessagesConfig.getConfig().getString("god-message-sender").replace("[SENDER]", "Console").replace("[RECEIVER]", player1.getName()));
+                }else{
+                    sender.sendMessage(ChatColor.RED + "That player does not exist!");
+                }
             }
         }
         return true;

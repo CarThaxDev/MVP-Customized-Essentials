@@ -20,9 +20,13 @@ public class ClearInventoryCommand implements CommandExecutor {
                     player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-self").replace("[SENDER]", player.getName()).replace("[RECEIVER]", player.getName())));
                 }else if(!args[0].equals("*")){
                     Player player1 = Bukkit.getPlayer(args[0]);
-                    player1.getInventory().clear();
-                    player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-sender").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", player.getName())));
-                    player1.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-receiver").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", player.getName())));
+                    if(player1 != null) {
+                        player1.getInventory().clear();
+                        player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-sender").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", player.getName())));
+                        player1.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-receiver").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", player.getName())));
+                    }else{
+                        player.sendMessage(ChatColor.RED + "That player does not exist!");
+                    }
                 }else{
 
                 }
@@ -34,9 +38,13 @@ public class ClearInventoryCommand implements CommandExecutor {
                 sender.sendMessage("you MUST be a player to run this command!");
             }else if(!args[0].equals("*")){
                 Player player1 = Bukkit.getPlayer(args[0]);
-                player1.getInventory().clear();
-                sender.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-sender").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", "Console")));
-                player1.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-receiver").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", "Console")));
+                if(player1 != null) {
+                    player1.getInventory().clear();
+                    sender.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-sender").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", "Console")));
+                    player1.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("inventory-clear-message-receiver").replace("[RECEIVER]", player1.getName()).replace("[SENDER]", "Console")));
+                }else{
+                    sender.sendMessage(ChatColor.RED + "That player does not exist!");
+                }
             }else{
                 for(Player player : Bukkit.getOnlinePlayers()){
                     player.getInventory().clear();

@@ -38,7 +38,7 @@ public class VanishCommand implements CommandExecutor {
                     } else {
                         for (Player player1 : Bukkit.getOnlinePlayers()) {
                             if (!player1.hasPermission("m.vanish.see")) {
-                                player1.hidePlayer(plugin, player);
+                                player1.showPlayer(plugin, player);
                             }
                         }
                         player.setPlayerListName(player.getDisplayName());

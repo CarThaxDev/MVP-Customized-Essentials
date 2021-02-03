@@ -17,7 +17,11 @@ public class UnfreezePlayer implements CommandExecutor {
             }else{
                 if(args.length >= 1){
                     Player playerToFreeze = Bukkit.getPlayer(args[0]);
-                    playerToFreeze.setWalkSpeed(0.2f);
+                    if(playerToFreeze != null) {
+                        playerToFreeze.setWalkSpeed(0.2f);
+                    }else{
+                        player.sendMessage(ChatColor.RED + "That player does not exist!");
+                    }
                 }else{
                     player.sendMessage(ChatColor.RED + "You need to provide a player to freeze!");
                 }
@@ -25,7 +29,11 @@ public class UnfreezePlayer implements CommandExecutor {
         }else{
             if(args.length >= 1){
                 Player playerToFreeze = Bukkit.getPlayer(args[0]);
-                playerToFreeze.setWalkSpeed(0.2f);
+                if(playerToFreeze != null) {
+                    playerToFreeze.setWalkSpeed(0.2f);
+                }else{
+                    sender.sendMessage(ChatColor.RED + "That player does not exist!");
+                }
             }else{
                 sender.sendMessage(ChatColor.RED + "You need to provide a player to freeze!");
             }
