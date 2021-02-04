@@ -5,6 +5,7 @@ import me.xpyre.mvpcustomessentials.commands.chat.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
 import me.xpyre.mvpcustomessentials.commands.essentials.FlyCommand;
+import me.xpyre.mvpcustomessentials.commands.essentials.TeleportCommand;
 import me.xpyre.mvpcustomessentials.commands.essentials.VanishCommand;
 import me.xpyre.mvpcustomessentials.commands.inventory.InvseeCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.FreezePlayer;
@@ -35,6 +36,7 @@ public final class Main extends JavaPlugin {
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("invsee").setExecutor(new InvseeCommand());
+        getCommand("tp").setExecutor(new TeleportCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }
