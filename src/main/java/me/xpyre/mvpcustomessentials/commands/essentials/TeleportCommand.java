@@ -31,7 +31,7 @@ public class TeleportCommand implements CommandExecutor {
 
             }
         }else {
-            sender.sendMessage(ChatColor.RED + "Error: The console can not use this command");
+            sender.sendMessage(ChatColor.RED + "Error: The console can not use this command!");
 
         }
 
