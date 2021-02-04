@@ -30,14 +30,39 @@ commands:
     decription: Clears the chat.
     usage: /clearchat
   clearinventory:
-    description: Clears a player's (or your own) inventory
-    usage: /clearinventory <player>
+    description: Clears a player's (or your own) inventory.
+    usage: /clearinventory <player or *>
   god:
-    description: Makes you or another player invincible
-    usage: /god <player>
+    description: Makes you or another player invincible.
+    usage: /god <player or *>
   fly:
-    description: Make you or another player fly
-    usage: /fly <player>
+    description: Make you or another player fly.
+    usage: /fly <player or *>
   invsee:
-    description: See or edit another player's inventory
+    description: See or edit another player's inventory.
     usage: /invsee <player>
+  smite:
+    description: Smite another player with Lightning.
+    usage: /smite <player or *>
+  refill:
+    description: Refill a players inventory after a clearinventory or after they die.
+    usage: /refill <player>
+  gamemode:
+    description: Change your gamemode or the gamemode of another player.
+    usage: /gamemode <gamemode> <player>
+  gamemodecreative:
+    description: Change your gamemode to creative.
+    usage: /gamemodecreative
+    aliases: [gmc, gamemodec, gmcreative]
+  gamemodesurvival:
+    description: Change your gamemode to survival.
+    usage: /gamemodesurvival
+    aliases: [gms, gamemodes, gmsurvival]
+  gamemodeadventure:
+    description: Change your gamemode to adventure.
+    usage: /gamemodeadventure
+    aliases: [gma, gamemodea, gmadventure]
+  gamemodespectator:
+    description: Change your gamemode to spectator.
+    usage: /gamemodespectator
+    aliases: [gmsp, gamemodesp, gmspectator]
