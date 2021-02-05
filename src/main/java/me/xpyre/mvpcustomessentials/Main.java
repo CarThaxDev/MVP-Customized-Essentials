@@ -4,9 +4,11 @@ import me.xpyre.mvpcustomessentials.commands.chat.ClearChatCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MessageCommand;
 import me.xpyre.mvpcustomessentials.commands.chat.MuteChat;
 import me.xpyre.mvpcustomessentials.commands.chat.UnmuteChat;
-import me.xpyre.mvpcustomessentials.commands.essentials.FlyCommand;
-import me.xpyre.mvpcustomessentials.commands.essentials.VanishCommand;
+import me.xpyre.mvpcustomessentials.commands.essentials.*;
+import me.xpyre.mvpcustomessentials.commands.gamemode.*;
+import me.xpyre.mvpcustomessentials.commands.inventory.ClearInventoryCommand;
 import me.xpyre.mvpcustomessentials.commands.inventory.InvseeCommand;
+import me.xpyre.mvpcustomessentials.commands.inventory.RefillInventoryCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.FreezePlayer;
 import me.xpyre.mvpcustomessentials.commands.moderation.UnfreezePlayer;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
@@ -19,12 +21,12 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        // Messages Config Registration
-        MessagesConfig.setupConfig();
         //Regular Config Registration
         isChatMuted = false;
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+        //Messages Config Registration
+        MessagesConfig.setupConfig();
         //Command Registration
         getCommand("msg").setExecutor(new MessageCommand());
         getCommand("mutechat").setExecutor(new MuteChat());
@@ -35,6 +37,16 @@ public final class Main extends JavaPlugin {
         getCommand("clearchat").setExecutor(new ClearChatCommand());
         getCommand("fly").setExecutor(new FlyCommand());
         getCommand("invsee").setExecutor(new InvseeCommand());
+        getCommand("smite").setExecutor(new SmiteCommand());
+        getCommand("refill").setExecutor(new RefillInventoryCommand());
+        getCommand("gamemode").setExecutor(new GamemodeCommand());
+        getCommand("gamemodecreative").setExecutor(new GamemodeCreative());
+        getCommand("gamemodesurvival").setExecutor(new GamemodeSurvival());
+        getCommand("gamemodeadventure").setExecutor(new GamemodeAdventure());
+        getCommand("gamemodespectator").setExecutor(new GamemodeSpectator());
+        getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
+        getCommand("god").setExecutor(new GodCommand());
+        getCommand("teleport").setExecutor(new TeleportCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }

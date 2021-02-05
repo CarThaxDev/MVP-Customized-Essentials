@@ -1,4 +1,4 @@
-name: MVP Custom Essentials
+name: MVPCustomEssentials
 version: ${project.version}
 main: me.xpyre.mvpcustomessentials.Main
 prefix: [MVPCustomEssnetials]
@@ -66,3 +66,7 @@ commands:
     description: Change your gamemode to spectator.
     usage: /gamemodespectator
     aliases: [gmsp, gamemodesp, gmspectator]
+  teleport:
+    description: Teleport to another player.
+    usage: /teleport <player>
+    aliases: tp
