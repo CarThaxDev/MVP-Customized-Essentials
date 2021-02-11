@@ -70,3 +70,6 @@ commands:
     description: Teleport to another player.
     usage: /teleport <player>
     aliases: tp
+  punish:
+    description: Punish a player!
+    usage: TBD

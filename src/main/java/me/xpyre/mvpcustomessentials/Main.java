@@ -10,6 +10,7 @@ import me.xpyre.mvpcustomessentials.commands.inventory.ClearInventoryCommand;
 import me.xpyre.mvpcustomessentials.commands.inventory.InvseeCommand;
 import me.xpyre.mvpcustomessentials.commands.inventory.RefillInventoryCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.FreezePlayer;
+import me.xpyre.mvpcustomessentials.commands.moderation.PunishCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.UnfreezePlayer;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
 import me.xpyre.mvpcustomessentials.events.PlayerChatEventHandler;
@@ -18,11 +19,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 public final class Main extends JavaPlugin {
 
     public static boolean isChatMuted;
+    public static Main instance;
 
     @Override
     public void onEnable() {
-        //Regular Config Registration
+        instance = this;
         isChatMuted = false;
+        //Regular Config Registration
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
         //Messages Config Registration
@@ -47,6 +50,7 @@ public final class Main extends JavaPlugin {
         getCommand("clearinventory").setExecutor(new ClearInventoryCommand());
         getCommand("god").setExecutor(new GodCommand());
         getCommand("teleport").setExecutor(new TeleportCommand());
+        getCommand("punish").setExecutor(new PunishCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
     }
@@ -67,5 +71,8 @@ public final class Main extends JavaPlugin {
         catch(Exception e){
             return false;
         }
+    }
+    public static Main getInstance(){
+        return instance;
     }
 }

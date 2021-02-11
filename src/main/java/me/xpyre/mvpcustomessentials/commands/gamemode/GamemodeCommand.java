@@ -39,7 +39,7 @@ public class GamemodeCommand implements CommandExecutor {
                             p2.setGameMode(GameMode.SPECTATOR);
                         }
                     }else{
-
+                        p.sendMessage(ChatColor.RED + "You must provide a valid player!");
                     }
                 }
             }else{
@@ -61,7 +61,7 @@ public class GamemodeCommand implements CommandExecutor {
                         p.setGameMode(GameMode.SPECTATOR);
                     }
                 }else{
-
+                    sender.sendMessage(ChatColor.RED + "You must provide a valid player!");
                 }
             }
         }

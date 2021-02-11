@@ -1,5 +1,6 @@
 package me.xpyre.mvpcustomessentials.utility;
 
+import me.xpyre.mvpcustomessentials.Main;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
@@ -9,12 +10,14 @@ import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import java.net.InetAddress;
 import java.util.*;
 
 public class Util {
     private static HashMap<Player, ItemStack[]> playerItemStackMap = new HashMap<>();
     private static HashMap<Player, ItemStack[]> playerArmorMap = new HashMap<>();
     private static ArrayList<OfflinePlayer> mutedPlayers = new ArrayList<>();
+    private static ArrayList<InetAddress> mutedIPs = new ArrayList<>();
 
     private static HashMap<OfflinePlayer, Cooldown> tempmuteCooldownMap = new HashMap<>();
 
@@ -52,7 +55,7 @@ public class Util {
         }
     }
     public static boolean tempMutePlayer(long timeMuted, OfflinePlayer p){
-        Cooldown cooldown = new Cooldown(timeMuted);
+        Cooldown cooldown = new Cooldown(timeMuted, Main.getInstance(), p);
         if(!tempmuteCooldownMap.containsKey(p)){
             tempmuteCooldownMap.put(p, cooldown);
             return true;
@@ -61,14 +64,6 @@ public class Util {
         }
     }
 
-
-    public static boolean checkIfPlayerMuted(OfflinePlayer p){
-        if(mutedPlayers.contains(p)){
-            return true;
-        }else{
-            return false;
-        }
-    }
 
     public static void banPlayer(OfflinePlayer target, String reason, Player bannedBy) {
         YamlConfiguration config = MessagesConfig.getConfig();
@@ -81,7 +76,29 @@ public class Util {
         YamlConfiguration config = MessagesConfig.getConfig();
         Bukkit.getBanList(BanList.Type.NAME).addBan(target.getName(), config.getString("ban-message").replace("[REASON]", reason).replace("[PLAYER]", bannedBy.getName()), new Date(System.currentTimeMillis() + time), bannedBy.getName());
     }
+    public static boolean ipMutePlayer(Player player){
+        if(!mutedIPs.contains(player.getAddress().getAddress())){
+            mutedIPs.add(player.getAddress().getAddress());
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public static boolean checkIfPlayerMuted(Player p){
+        return mutedPlayers.contains(p) || mutedIPs.contains(p.getAddress().getAddress());
+    }
+    public static boolean flushMutesToConfig(){
+        try{
+            return true;
+        }catch(Exception e){
+            return false;
+        }
+    }
     public static void handleMySQL(){
         //WIP
+    }
+
+    public static void unTempMutePlayer(OfflinePlayer player) {
+        tempmuteCooldownMap.remove(player);
     }
 }
