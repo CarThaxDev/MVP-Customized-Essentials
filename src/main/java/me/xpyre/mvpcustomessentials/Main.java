@@ -14,12 +14,18 @@ import me.xpyre.mvpcustomessentials.commands.moderation.PunishCommand;
 import me.xpyre.mvpcustomessentials.commands.moderation.UnfreezePlayer;
 import me.xpyre.mvpcustomessentials.data.MessagesConfig;
 import me.xpyre.mvpcustomessentials.events.PlayerChatEventHandler;
+import me.xpyre.mvpcustomessentials.utility.Util;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 public final class Main extends JavaPlugin {
 
     public static boolean isChatMuted;
     public static Main instance;
+    public static Connection con;
 
     @Override
     public void onEnable() {
@@ -53,6 +59,12 @@ public final class Main extends JavaPlugin {
         getCommand("punish").setExecutor(new PunishCommand());
         //Event Registration
         getServer().getPluginManager().registerEvents(new PlayerChatEventHandler(), this);
+        try {
+            con = DriverManager.getConnection("jdbc:mysql:" + getConfig().getString("Database-URL") + "?user=" + getConfig().getString("Database-User") + "&password=" + getConfig().getString("Databse-Password"));
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
+        Util.setCon(con);
     }
 
     @Override

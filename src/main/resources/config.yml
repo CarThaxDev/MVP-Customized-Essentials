@@ -1,2 +1,4 @@
-# All messages are configured in messages.yml, this config is used to change basic variables, such as the URL for the MySql Database.
+# All messages are configured in messages.yml, this config is used to change the values nesecarry for the MySQL Functionality to work
 Database-URL: https://example.com/
+Database-User: admin
+Databale-Passworld: password

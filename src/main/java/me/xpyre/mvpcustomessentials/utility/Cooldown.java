@@ -11,31 +11,24 @@ public class Cooldown {
     private long timeOver;
     private Date date;
     private Player player;
+    private int i = 0;
 
     public Cooldown(long cooldown, Main main, OfflinePlayer p){
         timeOver = System.currentTimeMillis() + cooldown;
         date = new Date();
-        Bukkit.getScheduler().scheduleSyncRepeatingTask(main, new Runnable() {
-            @Override
-            public void run() {
-                if(isCooldownDone()){
-                    Util.unTempMutePlayer(p);
-                }
+        i = Bukkit.getServer().getScheduler().scheduleSyncRepeatingTask(main, () -> {
+            if(isCooldownDone()){
+                Util.unTempMutePlayer(p);
+                cancelTask();
             }
         }, 0L, 20L);
     }
 
-    protected boolean isCooldownDone(){
-        return System.currentTimeMillis() >= timeOver;
+    private void cancelTask() {
+        Bukkit.getServer().getScheduler().cancelTask(i);
     }
 
-    protected boolean forceCooldownOver(){
-        try{
-            timeOver = System.currentTimeMillis();
-            return true;
-        }catch(Exception e){
-            e.printStackTrace();
-            return false;
-        }
+    protected boolean isCooldownDone(){
+        return System.currentTimeMillis() >= timeOver;
     }
 }

@@ -48,7 +48,30 @@ public class PunishCommand implements CommandExecutor {
                             }
                         }
                     }else if (args[0].equalsIgnoreCase("unmute") || args[0].equalsIgnoreCase("unban")) {
-                        //WIP
+                        OfflinePlayer player2 = null;
+                        if(args.length > 2){
+                            for(Player player3 : Bukkit.getOnlinePlayers()){
+                                if(player3.getName().equals(args[0])){
+                                    player2 = player3;
+                                }
+                            }
+                            for(OfflinePlayer p : Bukkit.getOfflinePlayers()){
+                                if(p.getName().equals(args[0])){
+                                    player2 = p;
+                                }
+                            }
+                        }
+                        if(player2 != null) {
+                            if (Util.unMutePlayer(player2).equals("SUCCESS")) {
+                                player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("unmute-success-message")));
+                            } else if (Util.unMutePlayer(player2).equals("NOT_MUTED")) {
+                                player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("unmute-not-muted-message")));
+                            } else {
+                                player.sendMessage(Util.translateColorCodes(MessagesConfig.getConfig().getString("unmute-fail-message")));
+                            }
+                        }else{
+                            player.sendMessage(ChatColor.RED + "That player does not exist!");
+                        }
                     }else {
                         if (args.length < 4) {
                             player.sendMessage(ChatColor.RED + "Insufficient Arguments!");
